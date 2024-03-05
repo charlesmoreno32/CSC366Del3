@@ -8,7 +8,7 @@ const OwnerSchema = new mongoose.Schema(
       trim: true,
     },
     company_ownings: {
-      type: String,
+      type: Number,
       required: true,
       trim: true,
     }
