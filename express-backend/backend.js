@@ -10,7 +10,7 @@ app.get('/', (req, res) => {
 });
 
 app.post('/createTables', (req, res) => {
-    addOwner({
+    /*addOwner({
         company_name: "Nike",
         company_ownings: 12.3
     }); 
@@ -21,7 +21,7 @@ app.post('/createTables', (req, res) => {
     addOwner({
         company_name: "idk",
         company_ownings: 100
-    });
+    });*/
 });
 
 app.listen(port, () => {
