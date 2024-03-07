@@ -2,7 +2,7 @@ import express from "express";
 import { addPerson, findPersonByFirstName} from "./models/person-services.js";
 import { addStore, findStoreByName} from "./models/store-services.js";
 import { addOwner } from "./models/owner-services.js";
-import { addCustomer } from "./models/customer-services.js";
+import { addCustomer, findCustomerByPersonID } from "./models/customer-services.js";
 import { addCustomerOrder } from "./models/customer-order-service.js";
 import { addEmployee } from "./models/employee-services.js";
 
@@ -59,7 +59,6 @@ app.post('/populatePeopleTables', (req, res) => {
         });
         addCustomer({
             person_id: calpolyID,
-            CustomerID: 1,
             RewardsOption: true,
             PaymentType: "card"
         });
@@ -84,7 +83,6 @@ app.post('/populatePeopleTables', (req, res) => {
         const customerID = res[0]._id.toString();
         addCustomer({
             person_id: customerID,
-            CustomerID: 2,
             RewardsOption: false,
             PaymentType: "cash"
         }); 
@@ -120,28 +118,34 @@ app.post('/populateStore', (req, res) => {
 
 app.post('/populateCustomerOrder', (req, res) => {
     findPersonByFirstName("customer").then((res) => {
-        const customerID = res[0]._id.toString();
-        findStoreByName("SLO").then((resp) => {
-            const storeID = resp[0]._id.toString();
-            addCustomerOrder({
-                customerID: customerID,
-                storeID: storeID,
-                orderDate: new Date(),
-                totalAmount: 100,
-                paymentType: "cash"
+        const personID = res[0]._id.toString();
+        findCustomerByPersonID(personID).then((response) => {
+            const customerID = response[0]._id.toString();
+            findStoreByName("SLO").then((resp) => {
+                const storeID = resp[0]._id.toString();
+                addCustomerOrder({
+                    customerID: customerID,
+                    storeID: storeID,
+                    orderDate: new Date(),
+                    totalAmount: 100,
+                    paymentType: "cash"
+                });
             });
         });
     });
     findPersonByFirstName("cal").then((res) => {
-        const customerID = res[0]._id.toString();
-        findStoreByName("LA").then((resp) => {
-            const storeID = resp[0]._id.toString();
-            addCustomerOrder({
-                customerID: customerID,
-                storeID: storeID,
-                orderDate: new Date(),
-                totalAmount: 7,
-                paymentType: "credit"
+        const personID = res[0]._id.toString();
+        findCustomerByPersonID(personID).then((response) => {
+            const customerID = response[0]._id.toString();
+            findStoreByName("LA").then((resp) => {
+                const storeID = resp[0]._id.toString();
+                addCustomerOrder({
+                    customerID: customerID,
+                    storeID: storeID,
+                    orderDate: new Date(),
+                    totalAmount: 7,
+                    paymentType: "credit"
+                });
             });
         });
     });

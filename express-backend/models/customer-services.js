@@ -21,7 +21,12 @@ async function addCustomer(customer) {
   }
 }
 
+function findCustomerByPersonID(id) {
+  return customerModel.find({ person_id : id});
+}
+
 
 export {
-    addCustomer
+    addCustomer,
+    findCustomerByPersonID
 };

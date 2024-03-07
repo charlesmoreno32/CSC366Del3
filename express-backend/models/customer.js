@@ -7,11 +7,6 @@ const CustomerSchema = new mongoose.Schema(
         required: true,
         trim: true
     },
-    CustomerID: {
-      type: Number,
-      required: true,
-      trim: true,
-    },
     RewardsOption: {
         type: Boolean,
         required: true,
