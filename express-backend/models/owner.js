@@ -18,7 +18,7 @@ const OwnerSchema = new mongoose.Schema(
       trim: true,
     }
   },
-  { collection: "Owner" },
+  { collection: "Owner" }
 );
 
 const Owner = mongoose.model("Owner", OwnerSchema);

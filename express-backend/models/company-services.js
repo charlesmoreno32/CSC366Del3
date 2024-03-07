@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import CustomerOrderModel from "./customer-order.js"; 
+import CompanyModel from "./company.js"; 
 import dotenv from "dotenv";
 
 dotenv.config();
@@ -8,13 +8,11 @@ mongoose.set("debug", true);
 
 mongoose.connect("" + process.env.MONGO_URI).catch((error) => console.log(error));
 
-async function addCustomerOrder(customerOrder) {
+async function addCompany(company) {
   try {
-    console.log(process.env.MONGO_URI);
-    const customerOrderToAdd = new CustomerOrderModel(customerOrder);
-    console.log(customerOrderToAdd);
-    const savedCustomerOrder = await customerOrderToAdd.save();
-    return savedCustomerOrder;
+    const companyToAdd = new CompanyModel(company);
+    const savedCompany = await companyToAdd.save();
+    return savedCompany;
   } catch (error) {
     console.log(error);
     return false;
@@ -22,5 +20,5 @@ async function addCustomerOrder(customerOrder) {
 }
 
 export {
-    addCustomerOrder
+    addCompany
 };

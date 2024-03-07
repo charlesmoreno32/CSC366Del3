@@ -12,7 +12,8 @@ const CompanySchema = new mongoose.Schema (
             required: true,
             trim: true,
         },
-    }
+    },
+    { collection: "Company" }
 );
 
 const CompanyModel = mongoose.model("Company", CompanySchema);

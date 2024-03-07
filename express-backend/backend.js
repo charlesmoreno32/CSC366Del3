@@ -5,7 +5,7 @@ import { addOwner } from "./models/owner-services.js";
 import { addCustomer, findCustomerByPersonID } from "./models/customer-services.js";
 import { addCustomerOrder } from "./models/customer-order-service.js";
 import { addEmployee } from "./models/employee-services.js";
-
+import { addCompany } from "./models/company-services.js";
 
 const app = express();
 const port = 8000;
@@ -113,6 +113,17 @@ app.post('/populateStore', (req, res) => {
         Name: "SLO",
         City: "San Luis Obispo",
         State: "California",
+    });
+});
+
+app.post('/populateCompany', (req, res) => {
+    addCompany({
+        Name: "Nike",
+        countryOfIncorperation: "Los Angeles"
+    });
+    addCompany({
+        Name: "cal poly",
+        countryOfIncorperation: "San Luis Obispo"
     });
 });
 
