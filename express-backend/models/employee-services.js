@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import ownerModel from "./owner.js";
+import employeeModel from "./employee.js";
 import dotenv from "dotenv";
 
 dotenv.config();
@@ -10,17 +10,18 @@ mongoose.connect(
     "" + process.env.MONGO_URI
 ).catch((error) => console.log(error));
 
-async function addOwner(owner) {
+async function addEmployee(employee) {
   try {
-    const ownerToAdd = new ownerModel(owner);
-    const savedOwner = await ownerToAdd.save();
-    return savedOwner;
+    const employeeToAdd = new employeeModel(employee);
+    const savedEmployee = await employeeToAdd.save();
+    return savedEmployee;
   } catch (error) {
     console.log(error);
     return false;
   }
 }
 
+
 export {
-    addOwner
+    addEmployee
 };

@@ -2,6 +2,11 @@ import mongoose from "mongoose";
 
 const OwnerSchema = new mongoose.Schema(
   {
+    person_id: {
+      type: String,
+      required: true,
+      trim: true
+    },
     company_name: {
       type: String,
       required: true,
