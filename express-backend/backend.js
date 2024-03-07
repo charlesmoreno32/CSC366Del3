@@ -3,6 +3,7 @@ import { addPerson, findPersonByFirstName} from "./models/person-services.js";
 import { addStore, findStoreByName} from "./models/store-services.js";
 import { addOwner } from "./models/owner-services.js";
 import { addCustomer } from "./models/customer-services.js";
+import { addCustomerOrder } from "./models/customer-order-service.js";
 import { addEmployee } from "./models/employee-services.js";
 
 
@@ -114,6 +115,35 @@ app.post('/populateStore', (req, res) => {
         Name: "SLO",
         City: "San Luis Obispo",
         State: "California",
+    });
+});
+
+app.post('/populateCustomerOrder', (req, res) => {
+    findPersonByFirstName("customer").then((res) => {
+        const customerID = res[0]._id.toString();
+        findStoreByName("SLO").then((resp) => {
+            const storeID = resp[0]._id.toString();
+            addCustomerOrder({
+                customerID: customerID,
+                storeID: storeID,
+                orderDate: new Date(),
+                totalAmount: 100,
+                paymentType: "cash"
+            });
+        });
+    });
+    findPersonByFirstName("cal").then((res) => {
+        const customerID = res[0]._id.toString();
+        findStoreByName("LA").then((resp) => {
+            const storeID = resp[0]._id.toString();
+            addCustomerOrder({
+                customerID: customerID,
+                storeID: storeID,
+                orderDate: new Date(),
+                totalAmount: 7,
+                paymentType: "credit"
+            });
+        });
     });
 });
 

@@ -2,18 +2,13 @@ import mongoose from "mongoose";
 
 const CustomerOrderSchema = new mongoose.Schema (
     {
-        orderID: {
-            type: Number,
-            required: true,
-            trim: true,
-        },
         customerID: {
-            type: Number,
+            type: String,
             required: true,
             trim: true,
         },
         storeID: {
-            type: Number,
+            type: String,
             required: true,
             trim: true,
         },
@@ -31,10 +26,11 @@ const CustomerOrderSchema = new mongoose.Schema (
             type: String,
             required: true,
             trim: true,
-        },
-    }
+        }
+    }, 
+    { collection: "CustomerOrder" }
 );
 
-const CustomerOrderModel = mongoose.model("CustomerOrder", CustomerOrderSchema);
+const CustomerOrder = mongoose.model("CustomerOrder", CustomerOrderSchema);
 
-export default CustomerOrderModel;
+export default CustomerOrder;
