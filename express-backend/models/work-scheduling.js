@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 const WorkSchedulingSchema = new mongoose.Schema(
   {
     EmplId: {
-      type: Number,
+      type: String,
       required: true,
     },
     StartTime: {
@@ -15,7 +15,7 @@ const WorkSchedulingSchema = new mongoose.Schema(
       required: true,
     },
     StoreID: {
-      type: Number,
+      type: String,
       required: true,
     },
   },

@@ -21,7 +21,11 @@ async function addEmployee(employee) {
   }
 }
 
+function findEmployeeByPersonID(id) {
+  return employeeModel.find({ person_id : id});
+}
 
 export {
-    addEmployee
+    addEmployee,
+    findEmployeeByPersonID
 };

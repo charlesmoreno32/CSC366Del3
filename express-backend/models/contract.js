@@ -11,7 +11,7 @@ const ContractSchema = new mongoose.Schema(
       required: true,
     },
     StoreID: {
-      type: Number,
+      type: String,
       required: true,
     },
     ItemID: {
